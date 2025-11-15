@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_smorest import Api
-import db_utils
+from repositories import db
 
 '''
 # TIRAR DE COMENTARIO DEPOIS
@@ -24,7 +24,7 @@ app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-
 api = Api(app)
 
 try:
-    db_utils.inicializar_db()
+    db.inicializar_db()
     print("Banco de dados (CSV) inicializado com sucesso!")
 except Exception as e:
     print(f"Erro ao inicializar o banco de dados: {e}")
