@@ -2,7 +2,7 @@ from datetime import datetime
 
 import repositories.venda_db as venda_repo
 import repositories.item_venda_db as item_venda_repo
-import repositories.db as db_base
+import repositories.db as db_base 
 
 import services.medicamento_service as med_service
 import services.movimentacao_service as mov_service
@@ -27,7 +27,7 @@ def realizar_venda(dados_venda):
             itens_processados.append({
                 "id_medicamento": item_req['id_medicamento'],
                 "quantidade": item_req['quantidade'],
-                "preco_unitario": preco_unit
+                "preco_unitario_momento": preco_unit
             })
             valor_total_calculado += preco_unit * item_req['quantidade']
 
@@ -40,7 +40,6 @@ def realizar_venda(dados_venda):
             'data_venda': datetime.now().isoformat(),
             'valor_total': round(valor_total_calculado, 2)
         }
-
         venda_repo.add_new(nova_venda_dados)
 
         for item in itens_processados:
@@ -51,10 +50,8 @@ def realizar_venda(dados_venda):
                 'preco_unitario_momento': item['preco_unitario_momento']
             }
 
-
-            item_data['id'] = db_base.gerar_id(db_base.ITEM_VENDAS_CSV)
+            item_data['id'] = db_base.gerar_id(db_base.ITENS_VENDA_CSV)
             item_venda_repo.add_new(item_data)
-
 
             mov_service.add_movimentacao({
                 'id_medicamento': item['id_medicamento'],
@@ -75,9 +72,10 @@ def realizar_venda(dados_venda):
 def get_todas_vendas():
     return venda_repo.get_all()
 
-def get_venda_por_id(id_venda):
-    return venda_repo.find_by_id(id_venda)
 
+def get_venda_por_id(id_venda):
+    venda = venda_repo.find_by_id(id_venda)
+    
     if not venda:
         return None
     
