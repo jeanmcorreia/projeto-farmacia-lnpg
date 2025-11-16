@@ -21,11 +21,12 @@ HEADERS = {
 
 
 def ensure_db_dir():
+    """Garante que o diretório 'db' exista."""
     os.makedirs(DB_DIR, exist_ok=True)
 
 
 def inicializar_db():
-    """Inicializa banco de dados criando arquivos CSV com headers"""
+    """Inicializa o banco de dados criando arquivos CSV com headers, se não existirem."""
     ensure_db_dir()
     for filepath, headers in HEADERS.items():
         if not os.path.exists(filepath):
@@ -33,6 +34,7 @@ def inicializar_db():
 
 
 def _ler_csv(filepath):
+    """Função helper privada para ler um CSV."""
     try:
         with open(filepath, 'r', newline='', encoding='utf-8') as f:
             return list(csv.DictReader(f))
@@ -41,6 +43,7 @@ def _ler_csv(filepath):
 
 
 def _escrever_csv(filepath, data, headers):
+    """Função helper privada para escrever em um CSV."""
     ensure_db_dir()
     with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=headers)
@@ -49,6 +52,7 @@ def _escrever_csv(filepath, data, headers):
 
 
 def _gerar_proximo_id(filepath):
+    """Função helper privada para gerar um novo ID."""
     dados = _ler_csv(filepath)
     if not dados:
         return 1
@@ -57,53 +61,32 @@ def _gerar_proximo_id(filepath):
 
 
 def ler_tudo(filepath):
+    """Lê todas as linhas de um arquivo CSV."""
     return _ler_csv(filepath)
 
 
 def digitar_tudo(filepath, data):
+    """Sobrescreve um arquivo CSV com novos dados."""
     headers = HEADERS.get(filepath)
     if headers is None:
-        raise ValueError(f"Unknown headers for {filepath}")
+        raise ValueError(f"Headers desconhecidos para {filepath}")
     _escrever_csv(filepath, data, headers)
 
 
 def adicionar_linha(filepath, row):
+    """Adiciona uma nova linha a um arquivo CSV (sem gerar ID)."""
     dados = _ler_csv(filepath)
     dados.append(row)
     digitar_tudo(filepath, dados)
 
 
-def ler_medicamentos():
-    return ler_tudo(MEDICAMENTOS_CSV)
-
-
-def escrever_medicamentos(data):
-    digitar_tudo(MEDICAMENTOS_CSV, data)
-
-
-def ler_vendas():
-    return ler_tudo(VENDAS_CSV)
-
-
-def digitar_vendas(data):
-    digitar_tudo(VENDAS_CSV, data)
-
-
-def ler_itens_venda():
-    return ler_tudo(ITENS_VENDA_CSV)
-
-
-def digitar_itens_venda(data):
-    digitar_tudo(ITENS_VENDA_CSV, data)
-
-
 def procurar_por_id(filepath, id_value):
+    """Procura um item por ID em qualquer arquivo CSV."""
     for item in _ler_csv(filepath):
         if item.get('id') == str(id_value):
             return item
     return None
 
-
-def procurar_itens_por_venda(id_venda):
-    itens = _ler_csv(ITENS_VENDA_CSV)
-    return [i for i in itens if i.get('id_venda') == str(id_venda)]
+def gerar_id(filepath):
+    """Expõe a função de gerar ID para os services usarem."""
+    return _gerar_proximo_id(filepath)
