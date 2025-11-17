@@ -14,3 +14,12 @@ def add_new(medicamento_data):
 
 def update_all(medicamentos_data):
     db.digitar_tudo(FILE_PATH, medicamentos_data)
+
+def delete(id):
+    todos = get_all()
+    novos_dados = [med for med in todos if med['id'] != str(id)]
+    
+    if len(novos_dados) < len(todos):
+        update_all(novos_dados)
+        return True
+    return False

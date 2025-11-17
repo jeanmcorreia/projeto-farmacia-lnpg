@@ -35,3 +35,7 @@ def deletar_funcionario(id):
         func_repo.update_all(novos_dados)
         return True
     return False
+
+def get_funcionarios_por_cargo(cargo):
+    todos = func_repo.get_all()
+    return [f for f in todos if f.get('cargo', '').lower() == cargo.lower()]
