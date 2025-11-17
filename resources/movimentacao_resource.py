@@ -21,6 +21,12 @@ class MovimentacoesList:
         return resultado, status
     
 @blp.route('/<int:id_medicamento')
-class MovimentacaoPorMedicamento:
+class MovimentacoesPorMedicamento:
     def get(self, id_medicamento):
         '''Retorna movimentos por medicamento'''
+        movimentacao = movimentacao_service.get_movimentacoes_por_medicamento(id_medicamento)
+
+        if not movimentacao:
+            abort(404, message="Movimentações não encontradas")
+        
+        return movimentacao

@@ -56,3 +56,9 @@ class FuncionarioId:
 class FuncionarioPorCargo:
     def get(self, cargo):
         '''Retorna lista de funcionários por cargo'''
+        funcionarios = funcionario_service.get_funcionarios_por_cargo(cargo)
+
+        if not funcionarios:
+            abort(404, message="Funcionários não encontrados")
+
+        return funcionarios
