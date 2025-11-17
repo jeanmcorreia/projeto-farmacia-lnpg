@@ -38,3 +38,10 @@ def add_movimentacao(dados_movimentacao):
 
 def get_todas_movimentacoes():
     return mov_repo.get_all()
+
+def get_movimentacoes_por_medicamento(id_medicamento):
+    medicamento = med_repo.find_by_id(id_medicamento)
+    if not medicamento:
+        return None 
+        
+    return mov_repo.find_by_medicamento_id(id_medicamento)
