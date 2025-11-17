@@ -44,4 +44,10 @@ class MedicamentoId:
     
     def delete(self, id_medicamento):
         '''Deleta medicamento por id'''
-        pass
+        
+        resultado, status = medicamento_service.deletar_medicamento(id_medicamento)
+
+        if status != 201:
+            abort(status, message=resultado.get('erro', 'Erro ao deletar o medicamento'))
+        
+        return resultado, status
