@@ -2,17 +2,11 @@ from flask import Flask
 from flask_smorest import Api
 from repositories import db
 
-# Quando a camada 'resources/' estiver pronta,
-# estas linhas devem ser descomentadas.
-'''
 from resources.cliente_resource import blp as ClientesBlueprint
 from resources.funcionario_resource import blp as FuncionariosBlueprint
 from resources.medicamento_resource import blp as MedicamentosBlueprint
 from resources.movimentacao_resource import blp as MovimentacoesBlueprint
 from resources.venda_resource import blp as VendasBlueprint
-'''
-# --- FIM DOS IMPORTS DO RESOURCE ---
-
 
 app = Flask(__name__)
 
@@ -34,8 +28,6 @@ try:
 except Exception as e:
     print(f"Erro ao inicializar o banco de dados: {e}")
 
-# (Estas linhas devem ser descomentadas quando a camada 'resources/' estiver pronta)
-'''
 api.register_blueprint(ClientesBlueprint)
 api.register_blueprint(FuncionariosBlueprint)
 api.register_blueprint(MedicamentosBlueprint)
@@ -43,7 +35,7 @@ api.register_blueprint(MovimentacoesBlueprint)
 api.register_blueprint(VendasBlueprint)
 
 print("Todos os blueprints foram registrados com sucesso.")
-'''
+
 # --- FIM DO REGISTRO DOS BLUEPRINTS ---
 
 if __name__ == "__main__":
