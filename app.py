@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_smorest import Api
 from repositories import db
 
@@ -10,6 +10,9 @@ from resources.venda_resource import blp as VendasBlueprint
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 app.config["API_TITLE"] = "API Farmácia"
 app.config["API_VERSION"] = "v1"
