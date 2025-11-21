@@ -70,6 +70,12 @@ projeto-farmacia-lnpg/
 
 Os CSVs são criados automaticamente na primeira execução (diretório `db/`).
 
+### Importar collection no Postman
+1. Inicie a API localmente (`python app.py`).
+2. No Postman escolha **Import > Link**.
+3. Informe `http://127.0.0.1:5000/openapi.json` e confirme.
+4. A collection é criada já com o servidor local configurado a partir do campo `servers` do OpenAPI.
+
 ## Documentação da API
 A API expõe blueprints independentes. Todos os endpoints retornam e recebem JSON, utilizando os schemas definidos em `schemas/`.
 

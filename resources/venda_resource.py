@@ -5,10 +5,10 @@ from schemas.venda_schema import VendaSchema, VendaResponseSchema, ItemVendaSche
 
 blp = Blueprint('vendas', 'vendas', url_prefix='/vendas', description='Operações de vendas')
 
-@blp.route('/')
+@blp.route('')
 class VendasList(MethodView):
 
-    @blp.response(200, VendaResponseSchema)
+    @blp.response(200, VendaResponseSchema(many=True))
     def get(self):
         """Retorna todas as vendas"""
         return venda_service.get_todas_vendas()
@@ -28,7 +28,7 @@ class VendasList(MethodView):
 @blp.route('/<int:id_venda>')
 class VendaItem(MethodView):
 
-    @blp.response(200, ItemVendaResponseSchema)
+    @blp.response(200, VendaResponseSchema)
     def get(self, id_venda):
         """Retorna uma venda por ID"""
         venda = venda_service.get_venda_por_id(id_venda)

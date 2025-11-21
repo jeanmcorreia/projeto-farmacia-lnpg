@@ -6,7 +6,7 @@ from schemas.cliente_schema import ClienteSchema, ClienteResponseSchema
 
 blp = Blueprint('clientes', 'clientes', url_prefix='/clientes', description='Operações de clientes')
 
-@blp.route('/')
+@blp.route('')
 class ClientesList(MethodView):
 
     @blp.response(200, ClienteResponseSchema(many=True))

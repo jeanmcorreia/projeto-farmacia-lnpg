@@ -6,7 +6,7 @@ from schemas.movimentacao_schema import MovimentacaoSchema, MovimentacaoResponse
 
 blp = Blueprint('movimentacoes', 'movimentacoes', url_prefix='/movimentacoes', description='Operações de movimentações')
 
-@blp.route('/')
+@blp.route('')
 class MovimentacoesList(MethodView):
 
     @blp.response(200, MovimentacaoResponseSchema(many=True))
@@ -28,7 +28,7 @@ class MovimentacoesList(MethodView):
 @blp.route('/<int:id_medicamento>')
 class MovimentacoesPorMedicamento(MethodView):
 
-    @blp.response(200, MovimentacaoResponseSchema)
+    @blp.response(200, MovimentacaoResponseSchema(many=True))
     def get(self, id_medicamento):
         '''Retorna movimentos por medicamento'''
         movimentacao = movimentacao_service.get_movimentacoes_por_medicamento(id_medicamento)

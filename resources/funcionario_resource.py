@@ -6,7 +6,7 @@ from schemas.funcionario_schema import FuncionarioSchema, FuncionarioResponseSch
 
 blp = Blueprint('funcionarios', 'funcionarios', url_prefix='/funcionarios', description='Operações de funcionários')
 
-@blp.route('/')
+@blp.route('')
 class FuncionariosList(MethodView):
 
     @blp.response(200, FuncionarioResponseSchema(many=True))
@@ -64,7 +64,7 @@ class FuncionarioId(MethodView):
 @blp.route('/cargo/<string:cargo>')
 class FuncionarioPorCargo(MethodView):
 
-    @blp.response(200, FuncionarioResponseSchema)
+    @blp.response(200, FuncionarioResponseSchema(many=True))
     def get(self, cargo):
         '''Retorna lista de funcionários por cargo'''
         funcionarios = funcionario_service.get_funcionarios_por_cargo(cargo)

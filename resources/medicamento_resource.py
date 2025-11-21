@@ -6,7 +6,7 @@ from schemas.medicamento_schema import MedicamentoSchema, MedicamentoResponseSch
 
 blp = Blueprint('medicamentos', 'medicamentos', url_prefix='/medicamentos', description='Operações com medicamentos')
 
-@blp.route('/')
+@blp.route('')
 class MedicamentosList(MethodView):
 
     @blp.response(200, MedicamentoResponseSchema(many=True))

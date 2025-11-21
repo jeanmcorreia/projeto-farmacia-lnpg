@@ -14,13 +14,19 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# Configurações do API Docs
 app.config["API_TITLE"] = "API Farmácia"
-app.config["API_VERSION"] = "v1"
+app.config["API_VERSION"] = "1.0.0"
 app.config["OPENAPI_VERSION"] = "3.0.3"
 app.config["OPENAPI_URL_PREFIX"] = "/"
-app.config["OPENAPI_SWAGGER_UI_PATH"] = "/docs"
+app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger-ui"
 app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-
+    
+# Ajustes para compatibilidade DO POSTMAN VS CODE
+app.config["OPENAPI_GENERATE_OPERATION_ID"] = True
+app.config["OPENAPI_STRIP_URL_PREFIX"] = True
+app.config["OPENAPI_PARAMETER_PLACEMENT"] = "method"
+app.config["OPENAPI_PREFER_200_FOR_PUT"] = True
 
 api = Api(app)
 
