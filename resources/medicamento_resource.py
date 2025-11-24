@@ -19,11 +19,7 @@ class MedicamentosList(MethodView):
     def post(self, dados_medicamento):
         '''Cadastra um medicamento'''
 
-        resultado, status = medicamento_service.criar_medicamento(dados_medicamento)
-
-        if status != 201:
-            abort(status, message=resultado.get('erro', 'Erro ao cadastrar o medicamento'))
-        
+        resultado = medicamento_service.criar_medicamento(dados_medicamento)
         return resultado
     
 @blp.route('/<int:id_medicamento>')
@@ -43,21 +39,11 @@ class MedicamentoId(MethodView):
     @blp.response(200, MedicamentoResponseSchema)
     def put(self, dados_medicamento, id_medicamento):
         '''Atualiza medicamento por id'''
-
-        resultado, status = medicamento_service.atualizar_medicamento(id_medicamento, dados_medicamento)
-
-        if status != 200:
-            abort(status, message=resultado.get('erro', 'Erro ao atualizar o medicamento'))
-
-        return resultado, status
+        resultado = medicamento_service.atualizar_medicamento(id_medicamento, dados_medicamento)
+        return resultado
     
     @blp.response(204)
     def delete(self, id_medicamento):
         '''Deleta medicamento por id'''
-        
-        resultado, status = medicamento_service.deletar_medicamento(id_medicamento)
-
-        if status != 204:
-            abort(status, message=resultado.get('erro', 'Erro ao deletar o medicamento'))
-        
-        return ""
+        resultado = medicamento_service.deletar_medicamento(id_medicamento)
+        return resultado

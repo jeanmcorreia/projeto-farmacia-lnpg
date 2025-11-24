@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask_smorest import abort
 
 import repositories.venda_db as venda_repo
 import repositories.item_venda_db as item_venda_repo
@@ -16,7 +17,7 @@ def realizar_venda(dados_venda):
             medicamento = med_service.get_medicamento_por_id(item_req['id_medicamento'])
 
             if not medicamento:
-                return {"erro": f"Medicamento com ID {item_req['id_medicamento']} não encontrado."}, 404
+                abort(422, message=f"Medicamento com ID {item_req['id_medicamento']} não encontrado.")
             
             estoque_atual = int(medicamento.get('quantidade_estoque', 0))
             preco_unit = float(medicamento.get('preco_unitario', 0.0))
@@ -62,7 +63,7 @@ def realizar_venda(dados_venda):
             })
 
         nova_venda_dados['itens'] = itens_processados
-        return nova_venda_dados, 201
+        return nova_venda_dados
     
     except Exception as e:
         print(f"Erro ao realizar venda: {e}")

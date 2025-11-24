@@ -2,68 +2,62 @@ from marshmallow import Schema, fields, validate
 
 class ItemVendaSchema(Schema):
     id_medicamento = fields.Int(
-        required=True, 
-        metadata={
-            'description':'ID do medicamento a ser vendido.'
-        }
+        required=True,
+        metadata={'description': 'ID do medicamento a ser vendido.'}
     )
     quantidade = fields.Int(
-        required=True, 
-        validate=validate.Range(min=1), 
-        metadata={
-            'description':'Quantidade a ser vendida (mínimo 1).'
-        }
+        required=True,
+        validate=validate.Range(min=1),
+        metadata={'description': 'Quantidade a ser vendida (mínimo 1).'}
     )
+
 
 class VendaSchema(Schema):
     id_cliente = fields.Int(
-        required=True, 
-        metadata={
-            'description':'ID do cliente que está comprando.'
-        }
+        required=True,
+        metadata={'description': 'ID do cliente que está comprando.'}
     )
     id_funcionario = fields.Int(
-        required=True, 
-        metadata={
-            'description':'ID do funcionário que realizou a venda.'
-        }
+        required=True,
+        metadata={'description': 'ID do funcionário que realizou a venda.'}
     )
     itens = fields.List(
-        fields.Nested(ItemVendaSchema()), 
+        fields.Nested(ItemVendaSchema()),
         required=True,
         validate=lambda x: len(x) > 0,
-        metadata={
-            'description':'Lista de medicamentos e quantidades vendidas.'
-        }
+        metadata={'description': 'Lista de medicamentos e quantidades vendidas.'}
     )
 
-class ItemVendaResponseSchema(ItemVendaSchema):
+class ItemVendaResponseSchema(Schema):
     id = fields.Int(dump_only=True)
     id_venda = fields.Int(dump_only=True)
+    id_medicamento = fields.Int()
+    quantidade = fields.Int()
     preco_unitario_momento = fields.Float(
-        dump_only=True, 
-        metadata={
-            'description':'Preço do item no momento da compra.'
-        }
+        dump_only=True,
+        metadata={'description': 'Preço do item no momento da compra.'}
     )
 
-class VendaResponseSchema(VendaSchema):
+
+class VendaResponseSchema(Schema):
     id = fields.Int(
-        dump_only=True, 
-        metadata={
-            'description':'ID único da venda gerado.'
-        }
+        dump_only=True,
+        metadata={'description': 'ID único da venda gerado.'}
     )
+    id_cliente = fields.Int()
+    id_funcionario = fields.Int()
+
     valor_total = fields.Float(
-        dump_only=True, 
-        metadata={
-            'description':'Valor total calculado da venda.'
-        }
+        dump_only=True,
+        metadata={'description': 'Valor total calculado da venda.'}
     )
-    data_venda = fields.DateTime(
-        dump_only=True, 
-        metadata={
-            'description':'Data/hora em que a venda foi registrada.'
-        }
+
+    data_venda = fields.Str(
+        dump_only=True,
+        metadata={'description': 'Data/hora em que a venda foi registrada.'}
     )
-    itens = fields.List(fields.Nested(ItemVendaResponseSchema()), dump_only=True)
+
+    itens = fields.List(
+        fields.Nested(ItemVendaResponseSchema()),
+        dump_only=True
+    )

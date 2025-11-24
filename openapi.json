@@ -1,0 +1,1153 @@
+{
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000",
+      "description": "Ambiente local"
+    }
+  ],
+  "paths": {
+    "/clientes/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna lista de clientes",
+        "tags": [
+          "clientes"
+        ]
+      },
+      "post": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "summary": "Cadastra um cliente",
+        "tags": [
+          "clientes"
+        ]
+      }
+    },
+    "/clientes/{id_cliente}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna um cliente por ID",
+        "tags": [
+          "clientes"
+        ]
+      },
+      "put": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "summary": "Atualiza cliente por ID",
+        "tags": [
+          "clientes"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Deleta cliente por ID",
+        "tags": [
+          "clientes"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_cliente",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ]
+    },
+    "/funcionarios/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FuncionarioResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna lista de funcionários",
+        "tags": [
+          "funcionarios"
+        ]
+      },
+      "post": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funcionario"
+              }
+            }
+          }
+        },
+        "summary": "Cadastra um funcionario",
+        "tags": [
+          "funcionarios"
+        ]
+      }
+    },
+    "/funcionarios/{id_funcionario}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna um funcionário por ID",
+        "tags": [
+          "funcionarios"
+        ]
+      },
+      "put": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funcionario"
+              }
+            }
+          }
+        },
+        "summary": "Atualiza funcionário por ID",
+        "tags": [
+          "funcionarios"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Deleta funcionário por id",
+        "tags": [
+          "funcionarios"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_funcionario",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ]
+    },
+    "/funcionarios/cargo/{cargo}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FuncionarioResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna lista de funcionários por cargo",
+        "tags": [
+          "funcionarios"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "cargo",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "/medicamentos/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MedicamentoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna lista de medicamentos",
+        "tags": [
+          "medicamentos"
+        ]
+      },
+      "post": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicamentoResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medicamento"
+              }
+            }
+          }
+        },
+        "summary": "Cadastra um medicamento",
+        "tags": [
+          "medicamentos"
+        ]
+      }
+    },
+    "/medicamentos/{id_medicamento}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicamentoResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna um medicamento por id",
+        "tags": [
+          "medicamentos"
+        ]
+      },
+      "put": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicamentoResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medicamento"
+              }
+            }
+          }
+        },
+        "summary": "Atualiza medicamento por id",
+        "tags": [
+          "medicamentos"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Deleta medicamento por id",
+        "tags": [
+          "medicamentos"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_medicamento",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ]
+    },
+    "/movimentacoes/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovimentacaoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna lista de movimentações",
+        "tags": [
+          "movimentacoes"
+        ]
+      },
+      "post": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MovimentacaoResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Movimentacao"
+              }
+            }
+          }
+        },
+        "summary": "Registrar uma movimentação",
+        "tags": [
+          "movimentacoes"
+        ]
+      }
+    },
+    "/movimentacoes/{id_medicamento}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MovimentacaoResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna movimentos por medicamento",
+        "tags": [
+          "movimentacoes"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_medicamento",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ]
+    },
+    "/vendas/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VendaResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna todas as vendas",
+        "tags": [
+          "vendas"
+        ]
+      },
+      "post": {
+        "responses": {
+          "422": {
+            "$ref": "#/components/responses/UNPROCESSABLE_ENTITY"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendaResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Venda"
+              }
+            }
+          }
+        },
+        "summary": "Realiza uma venda",
+        "tags": [
+          "vendas"
+        ]
+      }
+    },
+    "/vendas/{id_venda}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendaResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "summary": "Retorna uma venda por ID",
+        "tags": [
+          "vendas"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id_venda",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ]
+    }
+  },
+  "info": {
+    "title": "API Farmácia",
+    "version": "v1"
+  },
+  "tags": [
+    {
+      "name": "clientes",
+      "description": "Operações de clientes"
+    },
+    {
+      "name": "funcionarios",
+      "description": "Operações de funcionários"
+    },
+    {
+      "name": "medicamentos",
+      "description": "Operações com medicamentos"
+    },
+    {
+      "name": "movimentacoes",
+      "description": "Operações de movimentações"
+    },
+    {
+      "name": "vendas",
+      "description": "Operações de vendas"
+    }
+  ],
+  "openapi": "3.0.3",
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Error code"
+          },
+          "status": {
+            "type": "string",
+            "description": "Error name"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "errors": {
+            "type": "object",
+            "description": "Errors",
+            "additionalProperties": {}
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaginationMetadata": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          },
+          "total_pages": {
+            "type": "integer"
+          },
+          "first_page": {
+            "type": "integer"
+          },
+          "last_page": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "previous_page": {
+            "type": "integer"
+          },
+          "next_page": {
+            "type": "integer"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteResponse": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do cliente."
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do cliente (formato: XXX.XXX.XXX-XX)."
+          },
+          "telefone": {
+            "type": "string",
+            "description": "Telefone de contato."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email do cliente."
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID único do cliente."
+          }
+        },
+        "required": [
+          "cpf",
+          "email",
+          "nome",
+          "telefone"
+        ],
+        "additionalProperties": false
+      },
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do cliente."
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do cliente (formato: XXX.XXX.XXX-XX)."
+          },
+          "telefone": {
+            "type": "string",
+            "description": "Telefone de contato."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email do cliente."
+          }
+        },
+        "required": [
+          "cpf",
+          "email",
+          "nome",
+          "telefone"
+        ],
+        "additionalProperties": false
+      },
+      "FuncionarioResponse": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do funcionário."
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do funcionário (formato: XXX.XXX.XXX-XX)."
+          },
+          "cargo": {
+            "type": "string",
+            "description": "Cargo do funcionário."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email do funcionário."
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID único do funcionário."
+          }
+        },
+        "required": [
+          "cargo",
+          "cpf",
+          "email",
+          "nome"
+        ],
+        "additionalProperties": false
+      },
+      "Funcionario": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do funcionário."
+          },
+          "cpf": {
+            "type": "string",
+            "description": "CPF do funcionário (formato: XXX.XXX.XXX-XX)."
+          },
+          "cargo": {
+            "type": "string",
+            "description": "Cargo do funcionário."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email do funcionário."
+          }
+        },
+        "required": [
+          "cargo",
+          "cpf",
+          "email",
+          "nome"
+        ],
+        "additionalProperties": false
+      },
+      "MedicamentoResponse": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome comercial do medicamento."
+          },
+          "fabricante": {
+            "type": "string",
+            "description": "Laboratório fabricante."
+          },
+          "preco_unitario": {
+            "type": "number",
+            "description": "Preço unitário do medicamento."
+          },
+          "quantidade_estoque": {
+            "type": "integer",
+            "description": "Quantidade em estoque."
+          },
+          "validade": {
+            "type": "string",
+            "format": "date",
+            "description": "Data de validade (formato: AAAA-MM-DD)."
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID único do medicamento."
+          }
+        },
+        "required": [
+          "fabricante",
+          "nome",
+          "preco_unitario",
+          "quantidade_estoque",
+          "validade"
+        ],
+        "additionalProperties": false
+      },
+      "Medicamento": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome comercial do medicamento."
+          },
+          "fabricante": {
+            "type": "string",
+            "description": "Laboratório fabricante."
+          },
+          "preco_unitario": {
+            "type": "number",
+            "description": "Preço unitário do medicamento."
+          },
+          "quantidade_estoque": {
+            "type": "integer",
+            "description": "Quantidade em estoque."
+          },
+          "validade": {
+            "type": "string",
+            "format": "date",
+            "description": "Data de validade (formato: AAAA-MM-DD)."
+          }
+        },
+        "required": [
+          "fabricante",
+          "nome",
+          "preco_unitario",
+          "quantidade_estoque",
+          "validade"
+        ],
+        "additionalProperties": false
+      },
+      "MovimentacaoResponse": {
+        "type": "object",
+        "properties": {
+          "id_medicamento": {
+            "type": "integer",
+            "description": "ID do medicamento a ser movimentado."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo da movimentação (ex: \"entrada\")."
+          },
+          "quantidade": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantidade movimentada (deve ser > 0)."
+          },
+          "id_funcionario": {
+            "type": "integer",
+            "description": "ID do funcionário que registrou a movimentação."
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID único da movimentação."
+          },
+          "data": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "description": "Data e hora em que a movimentação foi registrada."
+          }
+        },
+        "required": [
+          "id_funcionario",
+          "id_medicamento",
+          "quantidade",
+          "tipo"
+        ],
+        "additionalProperties": false
+      },
+      "Movimentacao": {
+        "type": "object",
+        "properties": {
+          "id_medicamento": {
+            "type": "integer",
+            "description": "ID do medicamento a ser movimentado."
+          },
+          "tipo": {
+            "type": "string",
+            "description": "Tipo da movimentação (ex: \"entrada\")."
+          },
+          "quantidade": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantidade movimentada (deve ser > 0)."
+          },
+          "id_funcionario": {
+            "type": "integer",
+            "description": "ID do funcionário que registrou a movimentação."
+          }
+        },
+        "required": [
+          "id_funcionario",
+          "id_medicamento",
+          "quantidade",
+          "tipo"
+        ],
+        "additionalProperties": false
+      },
+      "ItemVendaResponse": {
+        "type": "object",
+        "properties": {
+          "id_medicamento": {
+            "type": "integer",
+            "description": "ID do medicamento a ser vendido."
+          },
+          "quantidade": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantidade a ser vendida (mínimo 1)."
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "id_venda": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "preco_unitario_momento": {
+            "type": "number",
+            "readOnly": true,
+            "description": "Preço do item no momento da compra."
+          }
+        },
+        "required": [
+          "id_medicamento",
+          "quantidade"
+        ],
+        "additionalProperties": false
+      },
+      "VendaResponse": {
+        "type": "object",
+        "properties": {
+          "id_cliente": {
+            "type": "integer",
+            "description": "ID do cliente que está comprando."
+          },
+          "id_funcionario": {
+            "type": "integer",
+            "description": "ID do funcionário que realizou a venda."
+          },
+          "itens": {
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/ItemVendaResponse"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "description": "ID único da venda gerado."
+          },
+          "valor_total": {
+            "type": "number",
+            "readOnly": true,
+            "description": "Valor total calculado da venda."
+          },
+          "data_venda": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "description": "Data/hora em que a venda foi registrada."
+          }
+        },
+        "required": [
+          "id_cliente",
+          "id_funcionario"
+        ],
+        "additionalProperties": false
+      },
+      "ItemVenda": {
+        "type": "object",
+        "properties": {
+          "id_medicamento": {
+            "type": "integer",
+            "description": "ID do medicamento a ser vendido."
+          },
+          "quantidade": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantidade a ser vendida (mínimo 1)."
+          }
+        },
+        "required": [
+          "id_medicamento",
+          "quantidade"
+        ],
+        "additionalProperties": false
+      },
+      "Venda": {
+        "type": "object",
+        "properties": {
+          "id_cliente": {
+            "type": "integer",
+            "description": "ID do cliente que está comprando."
+          },
+          "id_funcionario": {
+            "type": "integer",
+            "description": "ID do funcionário que realizou a venda."
+          },
+          "itens": {
+            "type": "array",
+            "description": "Lista de medicamentos e quantidades vendidas.",
+            "items": {
+              "$ref": "#/components/schemas/ItemVenda"
+            }
+          }
+        },
+        "required": [
+          "id_cliente",
+          "id_funcionario",
+          "itens"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "responses": {
+      "DEFAULT_ERROR": {
+        "description": "Default error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "UNPROCESSABLE_ENTITY": {
+        "description": "Unprocessable Entity",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
