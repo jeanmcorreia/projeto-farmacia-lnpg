@@ -34,7 +34,7 @@ class MovimentacaoResponseSchema(MovimentacaoSchema):
             'description':'ID único da movimentação.'
         }
     )
-    data = fields.DateTime(
+    data = fields.Str(
         dump_only=True, 
         metadata={
             'description':'Data e hora em que a movimentação foi registrada.'

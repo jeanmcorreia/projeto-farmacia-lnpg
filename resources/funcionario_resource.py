@@ -18,11 +18,7 @@ class FuncionariosList(MethodView):
     @blp.response(201, FuncionarioResponseSchema)
     def post(self, dados_funcionario):
         """Cadastra um funcionario"""
-        resultado, status = funcionario_service.criar_funcionario(dados_funcionario)
-
-        if status != 201:
-            abort(status, message=resultado.get('erro', 'Erro ao cadastrar funcionário'))
-        
+        resultado = funcionario_service.criar_funcionario(dados_funcionario)
         return resultado
     
 @blp.route('/<int:id_funcionario>')
@@ -43,23 +39,14 @@ class FuncionarioId(MethodView):
     def put(self, dados_funcionario, id_funcionario):
         '''Atualiza funcionário por ID'''
 
-        resultado, status = funcionario_service.atualizar_funcionario(id_funcionario, dados_funcionario)
-
-        if status != 200:
-            abort(status, message=resultado.get('erro', 'Erro ao atualizar o funcionário'))
-        
+        resultado = funcionario_service.atualizar_funcionario(id_funcionario, dados_funcionario)
         return resultado
     
     @blp.response(204)
     def delete(self, id_funcionario):
         '''Deleta funcionário por id'''
-
-        resultado, status = funcionario_service.deletar_funcionario(id_funcionario)
-
-        if status != 204:
-            abort(status, message=resultado.get('erro', 'Erro ao deletar o funcionário'))
-
-        return ""
+        resultado = funcionario_service.deletar_funcionario(id_funcionario)
+        return resultado
 
 @blp.route('/cargo/<string:cargo>')
 class FuncionarioPorCargo(MethodView):

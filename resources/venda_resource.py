@@ -5,7 +5,7 @@ from schemas.venda_schema import VendaSchema, VendaResponseSchema, ItemVendaSche
 
 blp = Blueprint('vendas', 'vendas', url_prefix='/vendas', description='Operações de vendas')
 
-@blp.route('')
+@blp.route('/')
 class VendasList(MethodView):
 
     @blp.response(200, VendaResponseSchema(many=True))
@@ -17,11 +17,7 @@ class VendasList(MethodView):
     @blp.response(201, VendaResponseSchema)
     def post(self, dados_venda):
         """Realiza uma venda"""
-        resultado, status = venda_service.realizar_venda(dados_venda)
-        
-        if status != 201:
-            abort(status, message=resultado.get('erro', 'Erro ao realizar venda'))
-        
+        resultado = venda_service.realizar_venda(dados_venda)
         return resultado
 
 

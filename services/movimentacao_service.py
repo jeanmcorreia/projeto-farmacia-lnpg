@@ -31,8 +31,14 @@ def add_movimentacao(dados_movimentacao):
     med_repo.update_all(todos_medicamentos)
 
     dados_movimentacao['id'] = db_base.gerar_id(db_base.MOVIMENTACOES_CSV)
-    if 'data' not in dados_movimentacao:
-        dados_movimentacao['data'] = datetime.now().isoformat()
+    data = dados_movimentacao.get("data")
+
+    if isinstance(data, datetime):
+        dados_movimentacao["data"] = data.isoformat()
+    elif isinstance(data, str):
+        dados_movimentacao["data"] = data
+    else:
+        dados_movimentacao["data"] = datetime.now().isoformat()
         
     return mov_repo.add_new(dados_movimentacao)
 

@@ -18,11 +18,7 @@ class MovimentacoesList(MethodView):
     @blp.response(201, MovimentacaoResponseSchema)
     def post(self, dados_movimentacao):
         '''Registrar uma movimentação'''
-        resultado, status = movimentacao_service.add_movimentacao(dados_movimentacao)
-
-        if status != 201:
-            abort(status, message=resultado.get('erro', 'Erro ao registrar a movimentação'))
-        
+        resultado = movimentacao_service.add_movimentacao(dados_movimentacao)        
         return resultado
     
 @blp.route('/<int:id_medicamento>')

@@ -15,9 +15,7 @@ def atualizar_medicamento(id, dados):
     medicamento = med_repo.find_by_id(id)
     if not medicamento:
         return None
-    
     medicamento.update(dados)
-    
     todos_medicamentos = med_repo.get_all()
     for i, med in enumerate(todos_medicamentos):
         if med['id'] == str(id):
@@ -25,7 +23,7 @@ def atualizar_medicamento(id, dados):
             break
 
     med_repo.update_all(todos_medicamentos)
-    return medicamento
+    return med_repo.find_by_id(id)
 
 def deletar_medicamento(id):
     return med_repo.delete(id)
