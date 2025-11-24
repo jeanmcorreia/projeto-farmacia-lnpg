@@ -1,6 +1,7 @@
 # API Farmácia LNPG
 
 API RESTful construída com Flask para apoiar o fluxo operacional de uma farmácia: cadastro de clientes e funcionários, controle de estoque via movimentações, gestão de medicamentos e registro de vendas. A aplicação é totalmente stateless e persiste os dados em arquivos CSV, permitindo uma execução simples sem banco de dados tradicional.
+Documentação: https://documenter.getpostman.com/view/49874098/2sB3dHXDSo
 
 ## Destaques
 - CRUD completo para clientes, funcionários e medicamentos.
